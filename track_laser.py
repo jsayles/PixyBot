@@ -35,8 +35,8 @@ class Blocks (Structure):
 
 class Robot():
 
-    def drive(self, x, y):
-        print ("drive(%d, %d)" % (x,y))
+    def drive(self, x, y, a):
+        print ("drive(%d, %d, %d)" % (x,y,a))
 
         # Y controls speed
         if y >= y_trigger_a:
@@ -48,6 +48,8 @@ class Robot():
         else:
             speed = 0
         #print("speed: %d" % speed)
+
+
 
         # X controls direction
         l_adjust = 1.0
@@ -80,7 +82,8 @@ while 1:
   if count > 0:
     for index in range (0, count):
         if blocks[index].signature == 1:
-	    robo.drive(blocks[index].x, blocks[index].y)
+            a = blocks[index].x * blocks[index].y
+	    robo.drive(blocks[index].x, blocks[index].y, a)
             break
 
   robo.stop()
