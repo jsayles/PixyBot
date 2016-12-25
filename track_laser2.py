@@ -110,8 +110,13 @@ class Robot():
         print("speed: %d, l_adjust: %s, r_adjust: %s" % (speed, l_adjust, r_adjust))
 
         # Go!
-        robot.lf(speed=l_speed)
-        robot.rf(speed=r_speed)
+        if speed < 0:
+            speed = speed * -1
+            robot.lb(speed=speed)
+            robot.rb(speed=speed)
+        else:
+            robot.lf(speed=l_speed)
+            robot.rf(speed=r_speed)
         time.sleep(run_secs)
 
     def stop(self):
