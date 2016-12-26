@@ -1,26 +1,77 @@
 import time
 import RPi.GPIO as GPIO
 
+RED1 = 27
+GREEN1 = 4
+BLUE1 = 17
+
+RED2 = 23
+GREEN2 = 24
+BLUE2 = 25
+
 class LED(object):
- def __init__(self):
-  self.green_pin = 10
-  self.blue_pin = 4
-  self.red_pin = 17
-  GPIO.setmode(GPIO.BCM)  
+ def __init__(self, r, g, b):
+  self.red_pin = r
+  self.green_pin = g
+  self.blue_pin = b
+
+  GPIO.setmode(GPIO.BCM)
+  GPIO.setwarnings(False)
+
   GPIO.setup(self.green_pin, GPIO.OUT)
   GPIO.setup(self.blue_pin, GPIO.OUT)
   GPIO.setup(self.red_pin, GPIO.OUT)
-  GPIO.output(self.green_pin, True)
-  GPIO.output(self.blue_pin, True)
-  GPIO.output(self.red_pin, True)
+
+  self.all_off()
   print("led ready")
 
- def green_on(self):
-  GPIO.output(self.green_pin, True)
+ def all_off(self):
+  self.red_off()
+  self.green_off()
+  self.blue_off()
+ 
+ def red_on(self):
+  GPIO.output(self.red_pin, False)
 
- def greenr_off(self):
+ def red_off(self):
+  GPIO.output(self.red_pin, True)
+
+ def green_on(self):
   GPIO.output(self.green_pin, False)
 
+ def green_off(self):
+  GPIO.output(self.green_pin, True)
+
+ def blue_on(self):
+  GPIO.output(self.blue_pin, False)
+
+ def blue_off(self):
+  GPIO.output(self.blue_pin, True)
+
+
 if __name__ == "__main__":
- l = LED()
- #l.green_on()
+ print("Testing LED1")
+ l1 = LED(RED1, GREEN1, BLUE1)
+ l1.all_off()
+ l1.red_on()
+ time.sleep(1)
+ l1.all_off()
+ l1.green_on()
+ time.sleep(1)
+ l1.all_off()
+ l1.blue_on()
+ time.sleep(1)
+ l1.all_off()
+
+ print("Testing LED2")
+ l2 = LED(RED2, GREEN2, BLUE2)
+ l2.all_off()
+ l2.red_on()
+ time.sleep(1)
+ l2.all_off()
+ l2.green_on()
+ time.sleep(1)
+ l2.all_off()
+ l2.blue_on()
+ time.sleep(1)
+ l2.all_off()
