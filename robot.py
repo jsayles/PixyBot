@@ -5,8 +5,8 @@ from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 # create a default object, no changes to I2C address or frequency
 mh = Adafruit_MotorHAT(addr=0x60)
 
-rightMotor = mh.getMotor(2)
-leftMotor = mh.getMotor(1)
+leftMotor = mh.getMotor(3)
+rightMotor = mh.getMotor(4)
 
 def stop():
         mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
