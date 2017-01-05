@@ -91,7 +91,6 @@ class Buzzer(object):
 
   GPIO.setup(self.buzzer_pin, GPIO.IN)
 
-#if __name__ == "__main__":
-#  a = input("Enter Tune number 1-5:")
-#  buzzer = Buzzer()
-#  buzzer.play(int(a))
+if __name__ == "__main__":
+  buzzer = Buzzer()
+  buzzer.play_rtttl(dixie)
